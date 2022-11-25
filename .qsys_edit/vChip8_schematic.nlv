@@ -1,0 +1,24 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst vChip8.periphery_control -pg 1 -lvl 3 -y 130
+preplace inst vChip8.pio_0 -pg 1 -lvl 3 -y 30
+preplace inst vChip8.uart -pg 1 -lvl 3 -y 310
+preplace inst vChip8.onchip_memory -pg 1 -lvl 3 -y 230
+preplace inst vChip8.nios2e -pg 1 -lvl 2 -y 300
+preplace inst vChip8 -pg 1 -lvl 1 -y 40 -regy -20
+preplace inst vChip8.nios2e.reset_bridge -pg 1
+preplace inst vChip8.clk_0 -pg 1 -lvl 1 -y 240
+preplace inst vChip8.video_buffer -pg 1 -lvl 3 -y 470
+preplace inst vChip8.nios2e.cpu -pg 1
+preplace inst vChip8.nios2e.clock_bridge -pg 1
+preplace netloc EXPORT<net_container>vChip8</net_container>(SLAVE)vChip8.periphery_control_external_connection,(SLAVE)periphery_control.external_connection) 1 0 3 NJ 160 NJ 160 NJ
+preplace netloc EXPORT<net_container>vChip8</net_container>(SLAVE)clk_0.clk_in,(SLAVE)vChip8.clk) 1 0 1 NJ
+preplace netloc POINT_TO_POINT<net_container>vChip8</net_container>(MASTER)nios2e.irq,(SLAVE)uart.irq) 1 2 1 830
+preplace netloc FAN_OUT<net_container>vChip8</net_container>(SLAVE)periphery_control.reset,(SLAVE)pio_0.reset,(SLAVE)video_buffer.reset,(SLAVE)uart.reset,(MASTER)clk_0.clk_reset,(SLAVE)nios2e.reset,(SLAVE)onchip_memory.reset1) 1 1 2 430 240 850
+preplace netloc INTERCONNECT<net_container>vChip8</net_container>(SLAVE)uart.avalon_jtag_slave,(SLAVE)pio_0.s1,(SLAVE)periphery_control.s1,(SLAVE)video_buffer.s1,(MASTER)nios2e.data_master,(SLAVE)onchip_memory.s1,(MASTER)nios2e.instruction_master,(SLAVE)nios2e.debug_mem_slave) 1 1 2 450 520 810
+preplace netloc FAN_OUT<net_container>vChip8</net_container>(SLAVE)video_buffer.clk,(MASTER)clk_0.clk,(SLAVE)periphery_control.clk,(SLAVE)pio_0.clk,(SLAVE)uart.clk,(SLAVE)onchip_memory.clk1,(SLAVE)nios2e.clk) 1 1 2 410 260 870
+preplace netloc EXPORT<net_container>vChip8</net_container>(SLAVE)video_buffer.external_connection,(SLAVE)vChip8.video_buffer_external_connection) 1 0 3 NJ 500 NJ 500 NJ
+preplace netloc EXPORT<net_container>vChip8</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)vChip8.reset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>vChip8</net_container>(SLAVE)vChip8.switch_control_external_connection,(SLAVE)pio_0.external_connection) 1 0 3 NJ 60 NJ 60 NJ
+levelinfo -pg 1 0 200 1070
+levelinfo -hier vChip8 210 240 570 910 1060
